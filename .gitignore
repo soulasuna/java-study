@@ -1,46 +1,50 @@
-*.java.hsp
-*.sonarj
-*.sw*
-.DS_Store
-.settings
-.springBeans
-bin
-build.sh
-integration-repo
-ivy-cache
-jxl.log
-jmx.log
-derby.log
-spring-test/test-output/
-.gradle
-argfile*
-pom.xml
-activemq-data/
-
-classes/
-/build
-buildSrc/build
-/spring-*/build
-/spring-core/kotlin-coroutines/build
-/framework-bom/build
-/integration-tests/build
-/src/asciidoc/build
+# maven ignore
 target/
+*.class
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+dependency-reduced-pom.xml
+.flattened-pom.xml
+pom.xml.versionsBackup
 
-# Eclipse artifacts, including WTP generated manifests
-.classpath
+# maven plugin ignore
+release.properties
+cobertura.ser
+*.gpg
+
+# eclipse ignore
+.settings/
 .project
-spring-*/src/main/java/META-INF/MANIFEST.MF
+.classpath
+.factorypath
 
-# IDEA artifacts and output dirs
-*.iml
+# idea ignore
+.idea/
+!/.idea/icon.png
 *.ipr
+*.iml
 *.iws
-.idea
-out
-test-output
-atlassian-ide-plugin.xml
-.gradletasknamecache
 
-# VS Code
-.vscode/
+# temp ignore
+logs/
+*.log
+*.doc
+*.cache
+*.diff
+*.patch
+*.tmp
+.hugo_build.lock
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# antlr ignore
+gen/
+*.tokens
+
+# agent build ignore
+/agent/

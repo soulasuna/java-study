@@ -1,0 +1,6 @@
+plugins {
+    id 'java'
+}
+
+group 'com.soulasuna'
+version '1.0-SNAPSHOT'

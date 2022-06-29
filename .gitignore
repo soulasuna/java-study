@@ -15,6 +15,12 @@ release.properties
 cobertura.ser
 *.gpg
 
+# Gradle ignore
+.gradle
+/build
+buildSrc/build
+/java-study-*/build
+
 # eclipse ignore
 .settings/
 .project

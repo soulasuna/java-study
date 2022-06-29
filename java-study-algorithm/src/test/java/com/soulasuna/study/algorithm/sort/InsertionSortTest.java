@@ -15,16 +15,18 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort.fixtrue;
+package com.soulasuna.study.algorithm.sort;
 
-import com.soulasuna.study.algorithm.fixtrue.LogPrinter;
+import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
+import org.junit.jupiter.api.Test;
 
-public class ErrorResultException extends RuntimeException {
+public final class InsertionSortTest {
     
-    private final int[] errorArray;
-    
-    public ErrorResultException(final int[] errorArray) {
-        this.errorArray = errorArray;
-        LogPrinter.printArray(errorArray);
+    @Test
+    public void assertProcess() {
+        InsertionSort insertionSort = new InsertionSort();
+        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
+                .algorithmProcess(insertionSort).generator(insertionSort).cloner(insertionSort).comparator(insertionSort).loop(10000).build();
+        build.validate();
     }
 }

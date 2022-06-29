@@ -15,25 +15,20 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.common.api;
 
-public final class InsertionSort extends AbstractSort {
+/**
+ * Random cloner.
+ *
+ * @param <T> class type of input
+ */
+public interface RandomCloner<T> {
     
-    @Override
-    public int[] actualProcess(final int[] input) {
-        if (isSorted(input)) {
-            return input;
-        }
-        for (int i = 0; i < input.length; i++) {
-            for (int j = i; j > 0 && input[j - 1] > input[j]; j--) {
-                swap(input, j - 1, j);
-            }
-        }
-        return input;
-    }
-    
-    @Override
-    public String getName() {
-        return "Insertion sort";
-    }
+    /**
+     * Clone.
+     *
+     * @param input input
+     * @return cloned input
+     */
+    T clone(T input);
 }

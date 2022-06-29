@@ -17,19 +17,25 @@
 
 package com.soulasuna.study.algorithm.sort;
 
-public final class BubbleSort implements ArraySort {
+public final class BubbleSort extends AbstractSort {
     
     @Override
-    public void sort(final int[] array) {
-        if (isSorted(array)) {
-            return;
+    public int[] actualProcess(final int[] input) {
+        if (isSorted(input)) {
+            return input;
         }
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j, j + 1);
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input.length - i - 1; j++) {
+                if (input[j] > input[j + 1]) {
+                    swap(input, j, j + 1);
                 }
             }
         }
+        return input;
+    }
+    
+    @Override
+    public String getName() {
+        return "Bubble sort";
     }
 }

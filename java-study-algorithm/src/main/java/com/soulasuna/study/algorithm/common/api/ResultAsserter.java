@@ -15,18 +15,21 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.fixtrue;
+package com.soulasuna.study.algorithm.common.api;
 
-public final class TimeLogger {
-
-    private final long startTimestamp = System.currentTimeMillis();
+/**
+ * Result asserter.
+ *
+ * @param <R> class type of result
+ */
+public interface ResultAsserter<R> {
     
     /**
-     * Get spend timeMillis.
+     * Is same result.
      *
-     * @return spend timeMillis
+     * @param expend expend
+     * @param actual actual
+     * @return is same or not
      */
-    public long getSpend() {
-        return System.currentTimeMillis() - startTimestamp;
-    }
+    boolean isSame(R expend, R actual);
 }

@@ -15,27 +15,36 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.common.api;
 
-import com.soulasuna.study.algorithm.sort.fixtrue.TestArrayHelper;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
-
-@Slf4j
-public final class ArraySortTest {
+/**
+ * Algorithm process.
+ *
+ * @param <T> class type of input
+ * @param <R> class type of result
+ */
+public interface AlgorithmProcess<T, R> {
     
-    @Test
-    public void assertBubbleSort() {
-        new TestArrayHelper(new BubbleSort(), "bubble sort").loopTest();
-    }
+    /**
+     * Actual Process.
+     *
+     * @param input input
+     * @return result
+     */
+    R actualProcess(T input);
     
-    @Test
-    public void assertSelectionSort() {
-        new TestArrayHelper(new SelectionSort(), "selection sort").loopTest();
-    }
+    /**
+     * Expend process.
+     *
+     * @param input input
+     * @return result
+     */
+    R expendProcess(T input);
     
-    @Test
-    public void assertInsertionSort() {
-        new TestArrayHelper(new InsertionSort(), "insertion sort").loopTest();
-    }
+    /**
+     * Get name.
+     *
+     * @return name
+     */
+    String getName();
 }

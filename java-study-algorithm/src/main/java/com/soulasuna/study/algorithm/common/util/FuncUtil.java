@@ -15,11 +15,12 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.fixtrue;
+package com.soulasuna.study.algorithm.common.util;
 
 import java.util.Collection;
+import java.util.Iterator;
 
-public final class FunUtil {
+public final class FuncUtil {
     
     /**
      * To array.
@@ -28,24 +29,14 @@ public final class FunUtil {
      * @return array
      */
     public static int[] toArray(final Collection<Integer> collection) {
-        int[] result = new int[collection.size()];
+        int size = collection.size();
+        int[] result = new int[size];
         int index = 0;
-        for (Integer each : collection) {
-            result[index] = each;
+        Iterator<Integer> iterator = collection.iterator();
+        while (iterator.hasNext()) {
+            result[index] = iterator.next();
             index++;
         }
-        return result;
-    }
-    
-    /**
-     * Copy array.
-     *
-     * @param array array
-     * @return copy array
-     */
-    public static int[] copyArray(final int[] array) {
-        int[] result = new int[array.length];
-        System.arraycopy(array, 0, result, 0, array.length);
         return result;
     }
 }

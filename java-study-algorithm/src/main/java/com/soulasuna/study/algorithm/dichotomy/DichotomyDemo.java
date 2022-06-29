@@ -15,23 +15,33 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.fixtrue;
+package com.soulasuna.study.algorithm.dichotomy;
 
-public final class ResultAsserter {
+public final class DichotomyDemo {
     
     /**
-     * Assert same.
+     * Find target.
      *
-     * @param expected expected
-     * @param actual actual
-     * @return is same or not
+     * @param array array
+     * @param target target
+     * @param left left
+     * @param right right
+     * @return find index
      */
-    public static boolean assertSame(final int[] expected, final int[] actual) {
-        for (int i = 0; i < actual.length; i++) {
-            if (actual[i] != expected[i]) {
-                return false;
+    public static int findTarget(final int[] array, final int target, final int left, final int right) {
+        int startIndex = left;
+        int endIndex = right;
+        while (startIndex < endIndex) {
+            int middleIndex = startIndex + (endIndex - startIndex >> 1);
+            int middle = array[middleIndex];
+            if (target > middle) {
+                startIndex = middleIndex + 1;
+            } else if (target < middle) {
+                endIndex = middleIndex - 1;
+            } else {
+                return middleIndex;
             }
         }
-        return true;
+        return array[startIndex] == target ? startIndex : -1;
     }
 }

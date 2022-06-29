@@ -15,34 +15,19 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.fixtrue;
+package com.soulasuna.study.algorithm.common.api;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.StringJoiner;
-
-@Slf4j
-public final class LogPrinter {
+/**
+ * Random generator.
+ *
+ * @param <T> class type of input
+ */
+public interface RandomGenerator<T> {
     
     /**
-     * Print array.
+     * Random input.
      *
-     * @param array array
+     * @return input
      */
-    public static void printArray(final int[] array) {
-        StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
-        for (int i = 0; i < array.length; i++) {
-            stringJoiner.add(String.valueOf(array[i]));
-        }
-        printString(stringJoiner.toString());
-    }
-    
-    /**
-     * Print message.
-     *
-     * @param message message
-     */
-    public static void printString(final String message) {
-        log.info(message);
-    }
+    T randomInput();
 }

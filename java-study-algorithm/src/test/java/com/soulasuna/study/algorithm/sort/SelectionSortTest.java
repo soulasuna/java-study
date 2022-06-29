@@ -17,36 +17,16 @@
 
 package com.soulasuna.study.algorithm.sort;
 
-@FunctionalInterface
-public interface ArraySort {
+import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
+import org.junit.jupiter.api.Test;
+
+public final class SelectionSortTest {
     
-    /**
-     * Sort.
-     *
-     * @param array array
-     */
-    void sort(int[] array);
-    
-    /**
-     * Is Sorted.
-     *
-     * @param array array
-     * @return
-     */
-    default boolean isSorted(final int[] array) {
-        return array.length < 2;
-    }
-    
-    /**
-     * Swap.
-     *
-     * @param array array
-     * @param i i
-     * @param j j
-     */
-    default void swap(final int[] array, final int i , final int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    @Test
+    public void assertProcess() {
+        SelectionSort selectionSort = new SelectionSort();
+        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
+                .algorithmProcess(selectionSort).generator(selectionSort).cloner(selectionSort).comparator(selectionSort).loop(10000).build();
+        build.validate();
     }
 }

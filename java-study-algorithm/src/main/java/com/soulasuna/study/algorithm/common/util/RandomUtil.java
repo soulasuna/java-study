@@ -15,46 +15,63 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.fixtrue;
+package com.soulasuna.study.algorithm.common.util;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public final class RandomGenerator {
+/**
+ * Random util.
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class RandomUtil {
     
-    public static int[] getIntArray(final int size) {
-        return getIntArray(size, Integer.MAX_VALUE);
+    /**
+     * Random int.
+     *
+     * @param max max
+     * @return random int
+     */
+    public static int randomInt(final int max) {
+        return (int) (max * Math.random() + 1);
     }
     
+    /**
+     * Get int array.
+     *
+     * @param size size
+     * @param max max
+     * @return array
+     */
     public static int[] getIntArray(final int size, final int max) {
-        return getIntArray(size, max, false);
-    }
-    
-    public static int[] getIntArray(final int size, final int max, final boolean unique) {
-        if (unique) {
-            return getUniqueIntArray(size, max);
-        }
         int[] result = new int[size];
         for (int i = 0; i < size; i++) {
-            result[i] = getInt(max);
+            result[i] = randomInt(max);
         }
         return result;
     }
     
-    public static int getInt(int max) {
-        return (int) (max * Math.random() + 1);
-    }
-    
+    /**
+     * Get unique int array.
+     *
+     * @param size size
+     * @param max max
+     * @return array
+     */
     private static int[] getUniqueIntArray(final int size, final int max) {
         Set<Integer> temp = new LinkedHashSet<>();
-        for (int i = 0; i < size; i++) {
-            int random = getInt(max);
+        int index = 0;
+        while (index < size) {
+            int random = randomInt(max);
             if (temp.contains(random)) {
-                i--;
+                index--;
                 continue;
             }
             temp.add(random);
         }
-        return FunUtil.toArray(temp);
+        return FuncUtil.toArray(temp);
     }
 }

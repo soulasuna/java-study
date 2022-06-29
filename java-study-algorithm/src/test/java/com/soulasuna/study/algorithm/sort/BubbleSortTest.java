@@ -15,11 +15,18 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.operation;
+package com.soulasuna.study.algorithm.sort;
 
-public class Demo {
+import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
+import org.junit.jupiter.api.Test;
+
+public final class BubbleSortTest {
     
-    public static void main(String[] args) {
-    
+    @Test
+    public void assertProcess() {
+        BubbleSort bubbleSort = new BubbleSort();
+        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
+                .algorithmProcess(bubbleSort).generator(bubbleSort).cloner(bubbleSort).comparator(bubbleSort).loop(10000).build();
+        build.validate();
     }
 }

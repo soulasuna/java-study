@@ -17,21 +17,27 @@
 
 package com.soulasuna.study.algorithm.sort;
 
-public final class SelectionSort implements ArraySort{
+public final class SelectionSort extends AbstractSort {
     
     @Override
-    public void sort(final int[] array) {
-        if (isSorted(array)) {
-            return;
+    public int[] actualProcess(final int[] input) {
+        if (isSorted(input)) {
+            return input;
         }
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < input.length; i++) {
             int mixIndex = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[mixIndex] > array[j]) {
+            for (int j = i + 1; j < input.length; j++) {
+                if (input[mixIndex] > input[j]) {
                     mixIndex = j;
                 }
             }
-            swap(array, i, mixIndex);
+            swap(input, i, mixIndex);
         }
+        return input;
+    }
+    
+    @Override
+    public String getName() {
+        return "Selection sort";
     }
 }

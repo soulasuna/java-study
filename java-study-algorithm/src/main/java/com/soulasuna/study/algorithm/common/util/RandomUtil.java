@@ -61,15 +61,15 @@ public final class RandomUtil {
      * @param max max
      * @return array
      */
-    private static int[] getUniqueIntArray(final int size, final int max) {
+    public static int[] getUniqueIntArray(final int size, final int max) {
         Set<Integer> temp = new LinkedHashSet<>();
         int index = 0;
         while (index < size) {
             int random = randomInt(max);
             if (temp.contains(random)) {
-                index--;
                 continue;
             }
+            index++;
             temp.add(random);
         }
         return FuncUtil.toArray(temp);

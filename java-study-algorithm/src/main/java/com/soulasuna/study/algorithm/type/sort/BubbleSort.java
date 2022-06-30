@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.sort;
 
 public final class BubbleSort extends AbstractSort {
     

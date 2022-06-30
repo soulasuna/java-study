@@ -15,18 +15,20 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.dichotomy.input;
 
-import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
-import org.junit.jupiter.api.Test;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public final class InsertionSortTest {
+@RequiredArgsConstructor
+@Getter
+public class DichotomyInput {
     
-    @Test
-    public void assertProcess() {
-        InsertionSort insertionSort = new InsertionSort();
-        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
-                .algorithmProcess(insertionSort).generator(insertionSort).cloner(insertionSort).comparator(insertionSort).loop(10000).build();
-        build.validate();
-    }
+    private final int[] array;
+    
+    private final int start;
+    
+    private final int end;
+    
+    private final int target;
 }

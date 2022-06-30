@@ -19,9 +19,6 @@ package com.soulasuna.study.algorithm.fixtrue;
 
 import com.google.gson.Gson;
 import com.soulasuna.study.algorithm.common.api.AlgorithmProcess;
-import com.soulasuna.study.algorithm.common.api.RandomCloner;
-import com.soulasuna.study.algorithm.common.api.RandomGenerator;
-import com.soulasuna.study.algorithm.common.api.ResultAsserter;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,42 +35,33 @@ public final class AlgorithmProcessValidator<T, R> {
     
     private final LogPrinter logPrinter = new LogPrinter();
     
-    private AlgorithmProcess<T, R> algorithmProcess;
-    
-    private RandomGenerator<T> generator;
-    
-    private RandomCloner<T> cloner;
-    
-    private ResultAsserter<R> comparator;
+    private AlgorithmProcess<T, R> process;
     
     private int loop;
     
     @Builder(toBuilder = true)
-    public AlgorithmProcessValidator(final AlgorithmProcess<T, R> algorithmProcess, final RandomGenerator<T> generator, final RandomCloner<T> cloner, final ResultAsserter<R> comparator,
-                                     final int loop) {
-        this.algorithmProcess = algorithmProcess;
-        this.generator = generator;
-        this.cloner = cloner;
-        this.comparator = comparator;
+    public AlgorithmProcessValidator(final AlgorithmProcess<T, R> process, final int loop) {
+        this.process = process;
         this.loop = loop;
     }
     
     /**
      * Validate.
+     *
+     * @return is success
      */
-    public void validate() {
-        String name = algorithmProcess.getName();
-        LogPrinter logPrinter = new LogPrinter();
+    public boolean validate() {
+        String name = process.getName();
         logPrinter.start(name);
         for (int i = 0; i < loop; i++) {
-            T input = generator.randomInput();
-            R actual = algorithmProcess.actualProcess(input);
-            R expend = algorithmProcess.expendProcess(cloner.clone(input));
-            if (!comparator.isSame(actual, expend)) {
-                logPrinter.error(name, input);
+            T input = process.generateInput();
+            R actual = process.actualProcess(input);
+            R expend = process.expendProcess(process.cloneInput(input));
+            if (!process.isSameResult(actual, expend)) {
+                return logPrinter.error(name, input);
             }
         }
-        logPrinter.success(name, loop);
+        return logPrinter.success(name, loop);
     }
     
     private static class LogPrinter {
@@ -86,12 +74,14 @@ public final class AlgorithmProcessValidator<T, R> {
             log.info("====={}:start=====", name);
         }
         
-        private void success(final String name, final int loop) {
+        private boolean success(final String name, final int loop) {
             log.info("====={}:end==loop:{}==spend:{}=====", name, loop, timeLogger.spend());
+            return true;
         }
     
-        private <T> void error(final String name, final T input) {
+        private <T> boolean error(final String name, final T input) {
             log.info("====={}:error==data:{}=====", name, format(input));
+            return false;
         }
         
         private <T> String format(final T input) {

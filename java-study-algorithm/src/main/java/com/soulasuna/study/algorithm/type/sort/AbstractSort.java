@@ -15,17 +15,15 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.sort;
 
 import com.soulasuna.study.algorithm.common.api.AlgorithmProcess;
-import com.soulasuna.study.algorithm.common.api.RandomCloner;
-import com.soulasuna.study.algorithm.common.api.RandomGenerator;
-import com.soulasuna.study.algorithm.common.api.ResultAsserter;
+import com.soulasuna.study.algorithm.common.util.FuncUtil;
 import com.soulasuna.study.algorithm.common.util.RandomUtil;
 
 import java.util.Arrays;
 
-public abstract class AbstractSort implements AlgorithmProcess<int[], int[]>, RandomGenerator<int[]>, RandomCloner<int[]>, ResultAsserter<int[]> {
+public abstract class AbstractSort implements AlgorithmProcess<int[], int[]> {
     
     @Override
     public int[] expendProcess(final int[] input) {
@@ -41,21 +39,17 @@ public abstract class AbstractSort implements AlgorithmProcess<int[], int[]>, Ra
     }
     
     @Override
-    public int[] clone(final int[] input) {
-        int[] result = new int[input.length];
-        for (int i = 0; i < input.length; i++) {
-            result[i] = input[i];
-        }
-        return result;
+    public int[] cloneInput(final int[] input) {
+        return FuncUtil.cloneArray(input);
     }
     
     @Override
-    public int[] randomInput() {
+    public int[] generateInput() {
         return RandomUtil.getIntArray(20, 100);
     }
     
     @Override
-    public boolean isSame(final int[] expend, final int[] actual) {
+    public boolean isSameResult(final int[] expend, final int[] actual) {
         int actualLength = actual.length;
         int expendLength = expend.length;
         if (actualLength == expendLength) {

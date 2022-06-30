@@ -15,25 +15,27 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.sort;
 
-public final class InsertionSort extends AbstractSort {
+import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public final class SortTestTest {
     
-    @Override
-    public int[] actualProcess(final int[] input) {
-        if (isSorted(input)) {
-            return input;
-        }
-        for (int i = 0; i < input.length; i++) {
-            for (int j = i; j > 0 && input[j - 1] > input[j]; j--) {
-                swap(input, j - 1, j);
-            }
-        }
-        return input;
+    @Test
+    public void assertBubbleSort() {
+        assertTrue(new AlgorithmProcessValidator<int[], int[]>().toBuilder().process(new BubbleSort()).loop(10000).build().validate());
     }
     
-    @Override
-    public String getName() {
-        return "Insertion sort";
+    @Test
+    public void assertSelectionSort() {
+        assertTrue(new AlgorithmProcessValidator<int[], int[]>().toBuilder().process(new SelectionSort()).loop(10000).build().validate());
+    }
+    
+    @Test
+    public void assertInsertionSort() {
+        assertTrue(new AlgorithmProcessValidator<int[], int[]>().toBuilder().process(new InsertionSort()).loop(1000).build().validate());
     }
 }

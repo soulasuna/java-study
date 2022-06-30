@@ -39,4 +39,18 @@ public final class FuncUtil {
         }
         return result;
     }
+    
+    /**
+     * Clone array.
+     *
+     * @param input input
+     * @return cloned array
+     */
+    public static int[] cloneArray(final int[] input) {
+        int[] result = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            result[i] = input[i];
+        }
+        return result;
+    }
 }

@@ -15,18 +15,19 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.dichotomy;
 
 import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
+import com.soulasuna.study.algorithm.type.dichotomy.input.DichotomyInput;
 import org.junit.jupiter.api.Test;
 
-public final class BubbleSortTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public final class DichotomyTest {
     
     @Test
     public void assertProcess() {
-        BubbleSort bubbleSort = new BubbleSort();
-        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
-                .algorithmProcess(bubbleSort).generator(bubbleSort).cloner(bubbleSort).comparator(bubbleSort).loop(10000).build();
-        build.validate();
+        FindTargetInSortedArray findTargetInSortedArray = new FindTargetInSortedArray();
+        assertTrue(new AlgorithmProcessValidator<DichotomyInput, Integer>().toBuilder().process(findTargetInSortedArray).loop(100000).build().validate());
     }
 }

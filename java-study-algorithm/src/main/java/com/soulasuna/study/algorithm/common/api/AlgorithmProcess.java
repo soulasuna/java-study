@@ -42,6 +42,30 @@ public interface AlgorithmProcess<T, R> {
     R expendProcess(T input);
     
     /**
+     * Generator input.
+     *
+     * @return input
+     */
+    T generateInput();
+    
+    /**
+     * Clone input.
+     *
+     * @param input input
+     * @return cloned input
+     */
+    T cloneInput(T input);
+    
+    /**
+     * Is same result.
+     *
+     * @param expend expend
+     * @param actual actual
+     * @return is same or not
+     */
+    boolean isSameResult(R expend, R actual);
+    
+    /**
      * Get name.
      *
      * @return name

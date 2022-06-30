@@ -15,18 +15,29 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.sort;
+package com.soulasuna.study.algorithm.type.sort;
 
-import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
-import org.junit.jupiter.api.Test;
-
-public final class SelectionSortTest {
+public final class SelectionSort extends AbstractSort {
     
-    @Test
-    public void assertProcess() {
-        SelectionSort selectionSort = new SelectionSort();
-        AlgorithmProcessValidator<int[], int[]> build = new AlgorithmProcessValidator<int[], int[]>().toBuilder()
-                .algorithmProcess(selectionSort).generator(selectionSort).cloner(selectionSort).comparator(selectionSort).loop(10000).build();
-        build.validate();
+    @Override
+    public int[] actualProcess(final int[] input) {
+        if (isSorted(input)) {
+            return input;
+        }
+        for (int i = 0; i < input.length; i++) {
+            int mixIndex = i;
+            for (int j = i + 1; j < input.length; j++) {
+                if (input[mixIndex] > input[j]) {
+                    mixIndex = j;
+                }
+            }
+            swap(input, i, mixIndex);
+        }
+        return input;
+    }
+    
+    @Override
+    public String getName() {
+        return "Selection sort";
     }
 }

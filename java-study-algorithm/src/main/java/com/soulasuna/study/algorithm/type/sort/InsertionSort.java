@@ -15,21 +15,25 @@
  * limitations under the License.
  */
 
-package com.soulasuna.study.algorithm.common.api;
+package com.soulasuna.study.algorithm.type.sort;
 
-/**
- * Result asserter.
- *
- * @param <R> class type of result
- */
-public interface ResultAsserter<R> {
+public final class InsertionSort extends AbstractSort {
     
-    /**
-     * Is same result.
-     *
-     * @param expend expend
-     * @param actual actual
-     * @return is same or not
-     */
-    boolean isSame(R expend, R actual);
+    @Override
+    public int[] actualProcess(final int[] input) {
+        if (isSorted(input)) {
+            return input;
+        }
+        for (int i = 0; i < input.length; i++) {
+            for (int j = i; j > 0 && input[j - 1] > input[j]; j--) {
+                swap(input, j - 1, j);
+            }
+        }
+        return input;
+    }
+    
+    @Override
+    public String getName() {
+        return "Insertion sort";
+    }
 }

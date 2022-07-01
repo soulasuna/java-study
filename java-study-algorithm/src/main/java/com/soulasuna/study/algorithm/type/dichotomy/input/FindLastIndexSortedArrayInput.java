@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class DichotomyInput {
+public final class FindLastIndexSortedArrayInput {
     
     private final int[] array;
     

@@ -17,12 +17,17 @@
 
 package com.soulasuna.study.algorithm.type.dichotomy;
 
-import com.soulasuna.study.algorithm.type.dichotomy.input.DichotomyInput;
+import com.soulasuna.study.algorithm.common.api.AlgorithmProcess;
+import com.soulasuna.study.algorithm.common.util.FuncUtil;
+import com.soulasuna.study.algorithm.common.util.RandomUtil;
+import com.soulasuna.study.algorithm.type.dichotomy.input.FindTargetInSortedArrayInput;
 
-public final class FindTargetInSortedArray extends AbstractDichotomy {
+import java.util.Arrays;
+
+public final class FindTargetInSortedArray implements AlgorithmProcess<FindTargetInSortedArrayInput, Integer> {
     
     @Override
-    public Integer actualProcess(final DichotomyInput input) {
+    public Integer actualProcess(final FindTargetInSortedArrayInput input) {
         return findTarget(input.getArray(), input.getStart(), input.getEnd(), input.getTarget());
     }
     
@@ -41,6 +46,44 @@ public final class FindTargetInSortedArray extends AbstractDichotomy {
             }
         }
         return target == array[right] ? right : -1;
+    }
+    
+    @Override
+    public Integer expendProcess(final FindTargetInSortedArrayInput input) {
+        int[] array = input.getArray();
+        int start = input.getStart();
+        int end = input.getEnd();
+        int target = input.getTarget();
+        for (int i = start; i <= end; i++) {
+            if (target == array[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    @Override
+    public FindTargetInSortedArrayInput generateInput() {
+        int[] array = RandomUtil.getUniqueIntArray(20, 100);
+        Arrays.sort(array);
+        int start = 0;
+        int end = array.length - 1;
+        int target = array[RandomUtil.randomInt(array.length - 1)];
+        return new FindTargetInSortedArrayInput(array, start, end, target);
+    }
+    
+    @Override
+    public FindTargetInSortedArrayInput cloneInput(final FindTargetInSortedArrayInput input) {
+        int[] cloneArray = FuncUtil.cloneArray(input.getArray());
+        int start = input.getStart();
+        int end = input.getEnd();
+        int target = input.getTarget();
+        return new FindTargetInSortedArrayInput(cloneArray, start, end, target);
+    }
+    
+    @Override
+    public boolean isSameResult(final Integer expend, final Integer actual) {
+        return expend.equals(actual);
     }
     
     @Override

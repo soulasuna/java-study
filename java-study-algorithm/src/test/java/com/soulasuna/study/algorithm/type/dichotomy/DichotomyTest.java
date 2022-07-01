@@ -18,7 +18,8 @@
 package com.soulasuna.study.algorithm.type.dichotomy;
 
 import com.soulasuna.study.algorithm.fixtrue.AlgorithmProcessValidator;
-import com.soulasuna.study.algorithm.type.dichotomy.input.DichotomyInput;
+import com.soulasuna.study.algorithm.type.dichotomy.input.FindLastIndexSortedArrayInput;
+import com.soulasuna.study.algorithm.type.dichotomy.input.FindTargetInSortedArrayInput;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,8 +27,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public final class DichotomyTest {
     
     @Test
-    public void assertProcess() {
+    public void assertFindTargetInSortedArray() {
         FindTargetInSortedArray findTargetInSortedArray = new FindTargetInSortedArray();
-        assertTrue(new AlgorithmProcessValidator<DichotomyInput, Integer>().toBuilder().process(findTargetInSortedArray).loop(100000).build().validate());
+        assertTrue(new AlgorithmProcessValidator<FindTargetInSortedArrayInput, Integer>().toBuilder().process(findTargetInSortedArray).loop(100000).build().validate());
+    }
+    
+    @Test
+    public void assertFindLastIndexSortedArray() {
+        FindLastIndexSortedArray findLastIndexSortedArray = new FindLastIndexSortedArray();
+        assertTrue(new AlgorithmProcessValidator<FindLastIndexSortedArrayInput, Integer>().toBuilder().process(findLastIndexSortedArray).loop(100000).build().validate());
     }
 }
